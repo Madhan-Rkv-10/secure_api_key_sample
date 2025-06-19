@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.sample_secure_key_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -19,7 +19,17 @@ android {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
+ externalNativeBuild {
+    cmake {
+     path = file("src/main/cpp/CMakeLists.txt")
+    }
+  }
     defaultConfig {
+     externalNativeBuild {
+    cmake {
+     cppFlags("-fexceptions", "-frtti")      }
+       }
+     
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.sample_secure_key_app"
         // You can update the following values to match your application needs.
